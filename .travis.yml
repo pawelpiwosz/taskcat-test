@@ -16,7 +16,7 @@ jobs:
   include:
     - stage: Test template
       script:
-        - aws cloudformation validate-template --template-body file://cf-template.yml
+        - aws cloudformation validate-template --region ${AWS_REGION} --template-body file://cf-template.yml
 
     - stage: Test template
       script:
