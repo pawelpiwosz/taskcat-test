@@ -1,0 +1,42 @@
+os: linux
+language: shell
+
+stages:
+  - name: Test template
+
+services:
+  - docker
+
+install:
+  - sudo apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse"
+  - sudo apt-get -qq update
+  - sudo pip install awscli
+
+jobs:
+  include:
+    - stage: Test template
+      script:
+        - aws cloudformation validate-template --region ${terraform_region} --template-body file://cf-template.yml
+
+    - stage: Test template
+      script:
+        - echo "Check for commit ${TRAVIS_COMMIT} and tag ${TRAVIS_TAG} from branch ${TRAVIS_BRANCH}."
+        - echo "This is build number ${TRAVIS_BUILD_NUMBER}, for ${TRAVIS_REPO_SLUG}."
+        - docker pull almerhor/cfnlint:latest
+        - docker run --rm -v $(pwd)/:/lintfiles almerhor/cfnlint -t cf-template.yml
+
+    - stage: Test template
+      os: linux
+      language: python
+      python:
+        - "3.8"
+      script:
+        - pip install --upgrade pip
+        - pip install taskcat
+        - taskcat test run
+      deploy:
+        - provider: s3
+          bucket: "${taskcat_bucket}"
+          upload-dir: "${TRAVIS_REPO_SLUG}/${TRAVIS_BUILD_NUMBER}"
+          local_dir: "taskcat_outputs"
+          skip_cleanup: true

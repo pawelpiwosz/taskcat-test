@@ -1,0 +1,4 @@
+s3bucketname: $[taskcat_autobucket]-$[taskcat_random-numbers]
+vpccidr: 10.1.0.0/16
+subnetacidr: 10.1.10.0/24
+subnetbcidr: 10.1.11.0/24

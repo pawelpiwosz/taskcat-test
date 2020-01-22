@@ -1,0 +1,10 @@
+project:
+  name: taskcat-test
+  regions:
+    - eu-west-1
+    - eu-central-1
+    - us-west-1
+
+tests:
+  simple-test:
+    template: ./cf-template.yml
