@@ -9,7 +9,7 @@ In DevOps world we have the tools to do proper CI/CD not only for applications, 
 
 This repo contains one very simple CloudFormation template. It creates VPC with two subnets, and S3 bucket.
 
-This template is executed throug CI/CD tool, Travis CI (file `.travis.yml`).
+This template is executed through CI/CD tool, Travis CI (file `.travis.yml`).
 
 Travis is executing three tests. 
 
@@ -38,7 +38,7 @@ TaskCat can also lint template.
 Important information. to properly test CloudFormation template using TaskCat, the template must be properly prepared. 
 You need to focus on proper parametrization to be able to execute tests effectively.
 
-### TaksCat config
+### TaskCat config
 
 Configuration is stored in `.taskcat.yml` file.  `.taskcat_ovverides.yml` contains parameters to ovveride, when template is executed. 
 By this we can avoid the situation, when your resources cannot be build, because of names clash (or whatever).
