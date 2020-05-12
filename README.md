@@ -40,7 +40,7 @@ You need to focus on proper parametrization to be able to execute tests effectiv
 
 ### TaskCat config
 
-Configuration is stored in `.taskcat.yml` file.  `.taskcat_ovverides.yml` contains parameters to ovveride, when template is executed. 
+Configuration is stored in `.taskcat.yml` file.  `.taskcat_overrides.yml` contains parameters to ovveride, when template is executed. 
 By this we can avoid the situation, when your resources cannot be build, because of names clash (or whatever).
 
 ### Output
